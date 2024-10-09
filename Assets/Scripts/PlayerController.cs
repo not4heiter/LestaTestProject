@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour
     public Animator anim;
     public Transform pivot;
 
+    public AudioClip jumpSound;
+    private AudioSource audioSource;
+
     public GameObject playerModel;
 
     public bool canMove = true;
@@ -23,6 +26,7 @@ public class PlayerController : MonoBehaviour
     void Start() 
     {
         controller = GetComponent<CharacterController>();
+        audioSource = gameObject.AddComponent<AudioSource>();
     }
 
     void Update()
@@ -48,6 +52,7 @@ public class PlayerController : MonoBehaviour
             if (controller.isGrounded && Input.GetButtonDown("Jump"))
             {
                 verticalVelocity = jumpForce;
+                audioSource.PlayOneShot(jumpSound);
             }
         }
     }
