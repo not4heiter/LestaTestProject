@@ -10,8 +10,15 @@ public class ShowFPS : MonoBehaviour
 
     private void Update()
     {
-        fps = 1.0f / Time.deltaTime;
-        fpsText.text = "FPS: " + (int)fps;
-        
+        if (Time.deltaTime > 0)
+        {
+            fps = 1.0f / Time.deltaTime;
+        }
+        else
+        {
+            fps = 0;
+        }
+
+        fpsText.text = "FPS: " + Mathf.Max(0, (int)fps);
     }
 }

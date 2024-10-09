@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+
         if (canMove)
         {
             float yStore = verticalVelocity;

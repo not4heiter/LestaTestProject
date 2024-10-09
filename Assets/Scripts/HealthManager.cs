@@ -18,9 +18,14 @@ public class HealthManager : MonoBehaviour
     public bool PauseGame;
     public bool isDead = false;
 
+    public AudioClip hitSound;
+    public AudioClip deathSound;
+    private AudioSource audioSource;
+
     void Start()
     {
         currentHealth = maxHealth;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -78,6 +83,16 @@ public class HealthManager : MonoBehaviour
     public void HurtPlayer(int damage)
     {
         currentHealth -= damage;
+
+        if (currentHealth > 0)
+        {
+            audioSource.PlayOneShot(hitSound);
+        }
+        else if (currentHealth <= 0)
+        {
+            audioSource.PlayOneShot(deathSound);
+            currentHealth = 0;
+        }
     }
 
     public void Pause()
